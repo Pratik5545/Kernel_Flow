@@ -1,0 +1,27 @@
+# --- Python (AI Service) ---
+ai-service/venv/
+ai-service/__pycache__/
+ai-service/*.pyc
+.env
+
+# --- .NET (Orchestrator) ---
+orchestrator/bin/
+orchestrator/obj/
+# appsettings.json ko ignore karna safe hai agar usme secrets hain
+orchestrator/appsettings.json
+orchestrator/appsettings.Development.json
+
+# --- Node/React (Dashboard, Landing Page) ---
+node_modules/
+dashboard/node_modules/
+dashboard/dist/
+dashboard/.env.local
+landing-page/node_modules/
+landing-page/dist/
+
+# --- General ---
+.DS_Store
+*.log
+.vscode/
+*.swp
+*.swo
