@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import * as signalR from '@microsoft/signalr'
 
-const HUB_URL = 'http://localhost:5000/hubs/tasks'
+const HUB_URL = import.meta.env.VITE_HUB_URL
 
 export function useKernelQueue() {
   const [snapshot, setSnapshot] = useState({ waiting: [], processing: [], completed: [] })

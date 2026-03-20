@@ -18,6 +18,7 @@ dashboard/dist/
 dashboard/.env.local
 landing-page/node_modules/
 landing-page/dist/
+dashboard/.env
 
 # --- General ---
 .DS_Store
