@@ -32,11 +32,11 @@ builder.Services.AddCors(options =>
     {
         policy
             .WithOrigins(
-                "http://localhost:5500",
-                "http://127.0.0.1:5500",
-                "http://localhost:5173",
-                "http://localhost:3000",
-                  "https://kernel-flow-2hffgar4u-pratik5545s-projects.vercel.app"
+                 "http://localhost:5500",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://kernel-flow-nu.vercel.app",
+    "https://kernel-flow-2hffgar4u-pratik5545s-projects.vercel.app"
             )
             .AllowAnyHeader()
             .AllowAnyMethod()
