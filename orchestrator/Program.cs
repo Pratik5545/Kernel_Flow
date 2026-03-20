@@ -4,7 +4,8 @@ using KernelFlow.Orchestrator.Hubs;
 using KernelFlow.Orchestrator.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://0.0.0.0:5000");
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 // Configure JSON serializer for case-insensitive enum parsing
 builder.Services.AddControllers()
