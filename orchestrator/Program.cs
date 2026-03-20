@@ -30,14 +30,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("KernelFlowPolicy", policy =>
     {
-        policy
-            .WithOrigins(
-                 "http://localhost:5500",
+        policy.WithOrigins(
+    "http://localhost:5500",
     "http://localhost:5173",
-    "http://localhost:3000",
-    "https://kernel-flow-nu.vercel.app",
-    "https://kernel-flow-2hffgar4u-pratik5545s-projects.vercel.app"
-            )
+    "https://kernel-flow-nu.vercel.app"
+)
+.SetIsOriginAllowedToAllowWildcardSubdomains()
+.WithOrigins("https://*.vercel.app")  // ←ALL VERCEL URLS ALLOW
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
