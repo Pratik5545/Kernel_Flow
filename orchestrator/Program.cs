@@ -36,7 +36,7 @@ builder.Services.AddCors(options =>
             "https://kernel-flow-nu.vercel.app"
         )
             .WithMethods("GET", "POST", "DELETE", "OPTIONS")
-            .WithHeaders("Content-Type")
+            .AllowAnyHeader()  // Allow all headers (needed for SignalR negotiation)
             .AllowCredentials();
     });
 });

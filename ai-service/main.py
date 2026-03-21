@@ -20,7 +20,7 @@ app.add_middleware(
         "https://kernel-flow-nu.vercel.app",
     ],
     allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type"],
+    allow_headers=["*"],  # Allow all headers for API calls
 )
 
 predictor = TaskPredictor()
