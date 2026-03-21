@@ -19,8 +19,8 @@ app.add_middleware(
         "https://kernel-flow-1.onrender.com",
         "https://kernel-flow-nu.vercel.app",
     ],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
 )
 
 predictor = TaskPredictor()
@@ -62,7 +62,10 @@ def predict_task_time(task: TaskInput):
             model_version="heuristic-v1.2"
         )
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        # Security: Log error server-side, return generic message
+        import logging
+        logging.error(f"Prediction error for task {task.task_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail="Prediction service error. Please try again later.")
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)

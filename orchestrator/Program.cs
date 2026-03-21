@@ -31,23 +31,35 @@ builder.Services.AddCors(options =>
     options.AddPolicy("KernelFlowPolicy", policy =>
     {
         policy.WithOrigins(
-    "http://localhost:5500",
-    "http://localhost:5173",
-    "https://kernel-flow-nu.vercel.app"
-)
-.SetIsOriginAllowedToAllowWildcardSubdomains()
-.WithOrigins("https://*.vercel.app")  // ←ALL VERCEL URLS ALLOW
-            .AllowAnyHeader()
-            .AllowAnyMethod()
+            "http://localhost:5500",
+            "http://localhost:5173",
+            "https://kernel-flow-nu.vercel.app"
+        )
+            .WithMethods("GET", "POST", "DELETE", "OPTIONS")
+            .WithHeaders("Content-Type")
             .AllowCredentials();
     });
 });
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI(c => {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "KernelFlow API V1");
+// Security: Only expose Swagger in development
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "KernelFlow API V1");
+    });
+}
+
+// Security: Add security headers
+app.Use(async (context, next) =>
+{
+    context.Response.Headers["X-Content-Type-Options"] = "nosniff";
+    context.Response.Headers["X-Frame-Options"] = "DENY";
+    context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
+    context.Response.Headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains";
+    await next();
 });
 
 app.UseCors("KernelFlowPolicy");
