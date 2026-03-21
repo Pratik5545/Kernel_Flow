@@ -112,8 +112,8 @@ export function Lane({ type, tasks }) {
               style={{
                 textAlign: 'center',
                 fontFamily: 'var(--font-mono)',
-                fontSize: 10,
-                color: 'rgba(232,237,245,0.15)',
+                fontSize: 14,
+                color: 'rgba(232,237,245,0.45)',
                 letterSpacing: 2,
                 paddingTop: 48,
                 textTransform: 'uppercase',

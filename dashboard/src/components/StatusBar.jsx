@@ -79,7 +79,7 @@ export function StatusBar({ connectionState, snapshot }) {
                 animate={{ y: 0, opacity: 1 }}
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: 22,
+                  fontSize: 38,
                   color: s.color,
                   letterSpacing: 2,
                   lineHeight: 1,

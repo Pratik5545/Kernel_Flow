@@ -46,7 +46,7 @@ export default function Dashboard() {
       <div style={{ display: 'flex', gap: 8, padding: '8px 20px 0', flexShrink: 0 }}>
         <button onClick={() => navigate('/')}
           style={{ background: 'transparent', border: '1px solid rgba(255,140,0,0.35)',
-            color: 'var(--amber)', fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: 2,
+            color: 'var(--amber)', fontFamily: 'var(--font-mono)', fontSize: 14, letterSpacing: 2,
             padding: '5px 14px', cursor: 'pointer', textTransform: 'uppercase' }}
           onMouseEnter={e => { e.target.style.background = 'rgba(255,140,0,0.1)'; e.target.style.borderColor = 'rgba(255,140,0,0.7)' }}
           onMouseLeave={e => { e.target.style.background = 'transparent'; e.target.style.borderColor = 'rgba(255,140,0,0.35)' }}
@@ -55,8 +55,8 @@ export default function Dashboard() {
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-          padding: '10px 0 8px', fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: 3,
-          color: 'rgba(255,140,0,0.25)', borderBottom: '1px solid var(--border-dim)', flexShrink: 0 }}
+          padding: '10px 0 8px', fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: 3,
+          color: 'rgba(255,140,0,0.55)', borderBottom: '1px solid var(--border-dim)', flexShrink: 0 }}
       >
         {['ENQUEUE','FIFO QUEUE','DEQUEUE','EXECUTE','COMPLETE'].map((s, i, arr) => (
           <span key={s} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -64,7 +64,7 @@ export default function Dashboard() {
             {i < arr.length - 1 && (
               <motion.span animate={{ opacity: [0.15,0.6,0.15], x: [0,3,0] }}
                 transition={{ repeat: Infinity, duration: 2, delay: i * 0.3 }}
-                style={{ fontSize: 12, color: 'var(--amber)' }}>→</motion.span>
+                style={{ fontSize: 16, color: 'var(--amber)' }}>→</motion.span>
             )}
           </span>
         ))}handleC
