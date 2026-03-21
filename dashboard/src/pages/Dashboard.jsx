@@ -3,6 +3,7 @@ import { Lane } from '../components/Lane.jsx'
 import { StatusBar } from '../components/StatusBar.jsx'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { useRef } from 'react'
 
 async function clearCompleted() {
   await fetch(`${import.meta.env.VITE_API_URL}/api/tasks/clear-completed`, {
@@ -27,6 +28,17 @@ function ArrowDivider({ color }) {
 export default function Dashboard() {
   const { snapshot, connectionState } = useKernelQueue()
   const navigate = useNavigate()
+  const refreshRef = useRef()
+
+  const handleClearCompleted = async () => {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/tasks/clear-completed`, {
+      method: 'DELETE'
+    })
+    // Refetch queue status to update UI immediately
+    setTimeout(() => {
+      fetch(`${import.meta.env.VITE_API_URL}/api/tasks/queue-status`)
+    }, 100)
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
@@ -55,7 +67,7 @@ export default function Dashboard() {
                 style={{ fontSize: 12, color: 'var(--amber)' }}>→</motion.span>
             )}
           </span>
-        ))}
+        ))}handleC
       </motion.div>
 
       <div style={{ display: 'flex', gap: 12, flex: 1, padding: '16px 20px', minHeight: 0, alignItems: 'stretch' }}>

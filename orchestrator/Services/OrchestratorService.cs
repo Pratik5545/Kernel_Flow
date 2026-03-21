@@ -149,7 +149,11 @@ public class OrchestratorService
     }
 
     public QueueSnapshot GetSnapshot() => _queue.GetSnapshot();
-    public void ClearCompleted() => _queue.ClearCompleted();
+    public async Task ClearCompleted()
+    {
+        _queue.ClearCompleted();
+        await BroadcastSnapshot();
+    }
 
     private async Task BroadcastSnapshot()
     {

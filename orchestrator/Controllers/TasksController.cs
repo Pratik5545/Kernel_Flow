@@ -40,10 +40,10 @@ public class TasksController : ControllerBase
         var snapshot = _orchestratorService.GetSnapshot();
         return Ok(snapshot);
     }
-   [HttpDelete("clear-completed")]
-public IActionResult ClearCompleted()
-{
-    _orchestratorService.ClearCompleted();
-    return Ok(new { message = "Cleared" });
-}
+    [HttpDelete("clear-completed")]
+    public async Task<IActionResult> ClearCompleted()
+    {
+        await _orchestratorService.ClearCompleted();
+        return Ok(new { message = "Cleared" });
+    }
 }
