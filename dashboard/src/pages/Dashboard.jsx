@@ -1,4 +1,4 @@
-import { useKernelQueue } from '../Hooks/useKernelQueue.js'
+import { useKernelQueue } from '../hooks/useKernelQueue.js'
 import { Lane } from '../components/Lane.jsx'
 import { StatusBar } from '../components/StatusBar.jsx'
 import { motion } from 'framer-motion'
