@@ -13,7 +13,12 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:5000",
+        "http://localhost:5173",
+        "https://kernel-flow-1.onrender.com",
+        "https://kernel-flow-nu.vercel.app",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
