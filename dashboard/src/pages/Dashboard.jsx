@@ -2,6 +2,7 @@ import { useKernelQueue } from '../hooks/useKernelQueue.js'
 import { Lane } from '../components/Lane.jsx'
 import { StatusBar } from '../components/StatusBar.jsx'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 async function clearCompleted() {
   await fetch(`${import.meta.env.VITE_API_URL}/api/tasks/clear-completed`, {
@@ -25,10 +26,20 @@ function ArrowDivider({ color }) {
 
 export default function Dashboard() {
   const { snapshot, connectionState } = useKernelQueue()
+  const navigate = useNavigate()
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <StatusBar connectionState={connectionState} snapshot={snapshot} />
+      <div style={{ display: 'flex', gap: 8, padding: '8px 20px 0', flexShrink: 0 }}>
+        <button onClick={() => navigate('/')}
+          style={{ background: 'transparent', border: '1px solid rgba(255,140,0,0.35)',
+            color: 'var(--amber)', fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: 2,
+            padding: '5px 14px', cursor: 'pointer', textTransform: 'uppercase' }}
+          onMouseEnter={e => { e.target.style.background = 'rgba(255,140,0,0.1)'; e.target.style.borderColor = 'rgba(255,140,0,0.7)' }}
+          onMouseLeave={e => { e.target.style.background = 'transparent'; e.target.style.borderColor = 'rgba(255,140,0,0.35)' }}
+        >← TASK DISPATCH</button>
+      </div>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
